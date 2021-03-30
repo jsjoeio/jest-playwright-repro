@@ -1,7 +1,7 @@
 const { firefox } = require("playwright")
 
-// 1. Install code-server `yarn add global code-server` and run locally: `code-server`
-// 2.
+// 1. Install code-server `yarn global add code-server` and run locally: `code-server`
+// 2. node index.js
 
 ;(async () => {
   const browser = await firefox.launch()
