@@ -6,6 +6,11 @@ module.exports = {
   testEnvironmentOptions: {
     "jest-playwright": {
       browsers: ["firefox"],
+      contextOptions: {
+        recordVideo: {
+          dir: "./videos",
+        },
+      },
     },
   },
 }
