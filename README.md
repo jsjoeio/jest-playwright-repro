@@ -11,4 +11,4 @@ Shows reproduction of issue: TODO add link
 1. `git clone https://github.com/jsjoeio/jest-playwright-repro.git`
 1. `git checkout firefox-issue`
 1. `yarn`
-1. `yarn test` or `yarn test:debug`
+1. `sh run-multiple-test.sh` which runs `yarn test` 10 times
