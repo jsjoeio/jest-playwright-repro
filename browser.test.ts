@@ -1,10 +1,15 @@
 /// <reference types="jest-playwright-preset" />
 
-beforeAll(async () => {
-  await page.goto("https://whatismybrowser.com/")
-})
+describe("login page", () => {
+  beforeEach(async () => {
+    await jestPlaywright.resetContext()
+    // await page.goto("http://localhost:8080")
+    await page.goto("https://github1s.com/microsoft/playwright")
+  })
 
-test("should display correct browser", async () => {
-  const browser = await page.$eval(".string-major", (el) => el.innerHTML)
-  expect(browser).toContain("Safari")
+  it("should see the login page", async () => {
+    // It should send us to the login page
+    // expect(await page.title()).toBe("code-server login")
+    expect(await page.title()).toBe("GitHub1s")
+  })
 })
