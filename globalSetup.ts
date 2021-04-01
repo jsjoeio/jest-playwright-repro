@@ -2,8 +2,12 @@
 // so that it authenticates us into code-server
 // ensuring that we're logged in before we run any tests
 import { chromium } from "playwright"
+import * as crypto from "crypto"
 
 const PASSWORD = "123password"
+const hash = (str: string): string => {
+  return crypto.createHash("sha256").update(str).digest("hex")
+}
 
 module.exports = async () => {
   console.log("\n🚨 Running Global Setup for Jest End-to-End Tests")
@@ -12,19 +16,22 @@ module.exports = async () => {
   const context = await browser.newContext()
   const page = await context.newPage()
 
-  await page.goto("http://localhost:8080", { waitUntil: "domcontentloaded" })
-  // Type in password
-  await page.fill(".password", PASSWORD)
-  // Click the submit button and login
-  await page.click(".submit")
-  // After logging in, we store a cookie in localStorage
-  // we need to wait a bit to make sure that happens
-  // before we grab the storage and save it
-  await page.waitForTimeout(1000)
-
   // Save storage state and store as an env variable
   // More info: https://playwright.dev/docs/auth?_highlight=authe#reuse-authentication-state
   const storage = await context.storageState()
+  // todo fix error ts
+  storage.cookies = [
+    {
+      sameSite: "Lax" as const,
+      name: "key",
+      value: hash(PASSWORD),
+      domain: "localhost",
+      path: "/",
+      expires: -1,
+      httpOnly: false,
+      secure: false,
+    },
+  ]
   process.env.STORAGE = JSON.stringify(storage)
 
   await page.close()
