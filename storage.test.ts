@@ -1,8 +1,10 @@
 /// <reference types="jest-playwright-preset" />
 
+const STORAGE = process.env.STORAGE || ""
+
 describe("storage", () => {
   beforeEach(async () => {
-    const storageState = JSON.parse(process.env.STORAGE) || {}
+    const storageState = JSON.parse(STORAGE) || {}
     console.log("Storage ===>", storageState)
     await jestPlaywright.resetContext({ storageState })
     await page.goto("http://localhost:8080")

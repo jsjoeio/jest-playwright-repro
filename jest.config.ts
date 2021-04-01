@@ -3,6 +3,7 @@ module.exports = {
   transform: {
     "^.+\\.ts$": "ts-jest",
   },
+  globalSetup: "<rootDir>/globalSetup.ts",
   testEnvironmentOptions: {
     "jest-playwright": {
       browsers: ["chromium"],
