@@ -4,7 +4,7 @@
 import { chromium } from "playwright"
 import * as crypto from "crypto"
 
-const PASSWORD = "123password"
+const PASSWORD = "e45432jklfdsab"
 const hash = (str: string): string => {
   return crypto.createHash("sha256").update(str).digest("hex")
 }
