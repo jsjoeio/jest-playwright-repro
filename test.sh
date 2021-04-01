@@ -2,7 +2,7 @@
 i=1
 successes=0
 failures=0
-totalTests=10
+totalTests=20
 SUCCESS_CHECKMARK=$(printf '\342\234\224\n' | iconv -f UTF-8)
 CROSS_MARK=$(printf '\342\235\214\n' | iconv -f UTF-8)
 
