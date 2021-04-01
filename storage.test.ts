@@ -5,11 +5,8 @@ const STORAGE = process.env.STORAGE || ""
 describe("storage", () => {
   beforeEach(async () => {
     const storageState = JSON.parse(STORAGE) || {}
-    console.log("Storage ===>", storageState)
     await jestPlaywright.resetContext({ storageState })
-    await page.goto("http://localhost:8080")
-    // code-server takes a second to load
-    await page.waitForTimeout(1000)
+    await page.goto("http://localhost:8080", { waitUntil: "networkidle" })
   })
 
   it("should keep us logged in using storageState", async () => {
