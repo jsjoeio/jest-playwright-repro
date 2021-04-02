@@ -10,7 +10,7 @@ TEST_FILE_NAME=$1
 
 until [ $i -gt $totalTests ]; do
   echo "Attempt #$i"
-  if yarn test -i "$TEST_FILE_NAME" >>"$OUTPUT_FILE" 2>&1; then
+  if DEBUG=pw:api yarn test -i "$TEST_FILE_NAME" >>"$OUTPUT_FILE" 2>&1; then
     ((successes = successes + 1))
     echo "  $SUCCESS_CHECKMARK tests passed"
   else

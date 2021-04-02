@@ -8,5 +8,10 @@ module.exports = {
     "jest-playwright": {
       browsers: ["chromium"],
     },
+    contextOptions: {
+      recordVideo: {
+        dir: "./videos",
+      },
+    },
   },
 }
