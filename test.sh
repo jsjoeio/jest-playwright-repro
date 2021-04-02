@@ -5,10 +5,12 @@ failures=0
 totalTests=10
 SUCCESS_CHECKMARK=$(printf '\342\234\224\n' | iconv -f UTF-8)
 CROSS_MARK=$(printf '\342\235\214\n' | iconv -f UTF-8)
+OUTPUT_FILE="jestOutput.txt"
+TEST_FILE_NAME=$1
 
 until [ $i -gt $totalTests ]; do
   echo "Attempt #$i"
-  if yarn test >>jestOutput.txt 2>&1; then
+  if yarn test -i "$TEST_FILE_NAME" >>"$OUTPUT_FILE" 2>&1; then
     ((successes = successes + 1))
     echo "  $SUCCESS_CHECKMARK tests passed"
   else
@@ -20,7 +22,7 @@ done
 
 echo "\n
 Ran $totalTests Tests.\n
-✅ Succeeded: $successes/$totalTests
-❌ Failed: $failures/$totalTests
+✅ Succeeded: $successes/10
+❌ Failed: $failures/10
 \n
 "
