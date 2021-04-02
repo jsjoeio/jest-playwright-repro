@@ -1,3 +1,4 @@
 node_modules
 jestOutput.txt
 videos
+.DS_Store
